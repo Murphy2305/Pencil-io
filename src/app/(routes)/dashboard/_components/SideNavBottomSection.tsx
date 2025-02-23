@@ -12,6 +12,8 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+import PricingDialog from './PriceDialog';
+import Constant from '@/app/_constant/Constant';
 
 function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
   const menuList = [
@@ -55,7 +57,8 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
             New File
           </Button>
         </DialogTrigger>
-        <DialogContent className='bg-white dark:bg-black text-black dark:text-gray-200'>
+ {totalFiles<Constant.MAX_FREE_FILE? 
+           <DialogContent className='bg-white dark:bg-black text-black dark:text-gray-200'>
           <DialogHeader>
             <DialogTitle>Create New File</DialogTitle>
             <DialogDescription>
@@ -78,19 +81,25 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
               </Button>
             </DialogClose>
           </DialogFooter>
-        </DialogContent>
+        </DialogContent>:
+        <PricingDialog/>
+        }
       </Dialog>
 
-      {/* Progress Bar */}
       <div className='h-4 w-full bg-gray-400 dark:bg-gray-800 rounded-full mt-5'>
-        <div
-          className='h-4 bg-blue-700 dark:bg-sky-400 rounded-full'
-          style={{ width: `${(totalFiles / 5) * 100}%` }}
-        ></div>
-      </div>
+  <div
+    className={`h-4 rounded-full ${
+      totalFiles === Constant.MAX_FREE_FILE
+        ? 'bg-red-600 dark:bg-red-500'
+        : 'bg-blue-700 dark:bg-sky-400'
+    }`}
+    style={{ width: `${(totalFiles / 5) * 100}%` }}
+  ></div>
+</div>
+
 
       <h2 className='text-[12px] mt-3'>
-        <strong>{totalFiles}</strong> out of <strong>5</strong> files used
+        <strong>{totalFiles}</strong> out of <strong>{Constant.MAX_FREE_FILE}</strong> files used
       </h2>
       <h2 className='text-[12px] mt-1'>Upgrade your plan for unlimited access.</h2>
     </div>
