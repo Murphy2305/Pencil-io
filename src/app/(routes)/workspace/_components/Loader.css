@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 100px;
+    height: 100px;
+    animation: animate 1s linear infinite;
+}
+
+.loader-item {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    box-shadow: 2px 2px 5px 1px #000;
+    animation: rotate 1s linear infinite;
+}
+
+/* Applying blue shades */
+.loader-item_1 {
+    top: 0;
+    left: 0;
+    background: #3b82f6;
+    /* Blue-500 */
+}
+
+.loader-item_2 {
+    top: 0;
+    right: 0;
+    background: #1d4ed8;
+    /* Blue-700 */
+}
+
+.loader-item_3 {
+    bottom: 0;
+    left: 0;
+    background: #38bdf8;
+    /* Sky-400 */
+}
+
+.loader-item_4 {
+    bottom: 0;
+    right: 0;
+    background: #0ea5e9;
+    /* Sky-500 */
+}
+
+@keyframes animate {
+
+    0%,
+    10%,
+    90%,
+    100% {
+        width: 100px;
+        height: 100px;
+    }
+
+    50% {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@keyframes rotate {
+
+    0%,
+    10% {
+        transform: rotate(0deg);
+    }
+
+    60%,
+    90%,
+    100% {
+        transform: rotate(90deg);
+    }
+}
